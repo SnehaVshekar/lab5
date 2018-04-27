@@ -70,6 +70,7 @@ public class Lab5Servlet extends HttpServlet {
 			conn.addRequestProperty("grade", gradeResponse.get("grade"));
 
 			if (conn.getResponseCode() != 200) {
+				System.out.println(conn.getResponseMessage());
 				throw new RuntimeException("Failed : HTTP error code : "
 						+ conn.getResponseCode());
 			}
@@ -81,6 +82,7 @@ public class Lab5Servlet extends HttpServlet {
 
 			while ((output = br.readLine()) != null) {
 				result.add(output);
+
 			}
 
 			Map<String, String> letterGradeResponse = new ObjectMapper().readValue(result.toString(), Map.class);
