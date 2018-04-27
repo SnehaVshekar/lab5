@@ -66,18 +66,19 @@ public class Lab5Servlet extends HttpServlet {
 
 			System.out.println("Received grade from first server : " + gradeResponse.get("grade"));
 
-			url = new URL("http://localhost:8080/lab5map/calculateLetterGrade");
-			conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestMethod("GET");
-			conn.addRequestProperty("grade", gradeResponse.get("grade"));
+			URL url2 = new URL("http://localhost:8080/lab5map/calculateLetterGrade");
+			HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
+			conn2.setRequestMethod("GET");
+			conn2.addRequestProperty("grade", gradeResponse.get("grade"));
 
-			if (conn.getResponseCode() != 200) {
-				res.sendError(conn.getResponseCode(), conn.getResponseMessage());
-				System.out.println(conn.getErrorStream());
-				System.out.println(conn.getResponseMessage());
+			if (conn2.getResponseCode() != 200) {
+				res.sendError(conn2.getResponseCode(), conn2.getResponseMessage());
+				System.out.println(conn2.getErrorStream());
+				System.out.println(conn2.getResponseMessage());
+				return;
 			}
 
-			br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+			br = new BufferedReader(new InputStreamReader((conn2.getInputStream())));
 
 			result = new StringJoiner("\n");
 			System.out.println("Output from second Server .... \n");
@@ -89,7 +90,7 @@ public class Lab5Servlet extends HttpServlet {
 
 			Map<String, String> letterGradeResponse = new ObjectMapper().readValue(result.toString(), Map.class);
 			letterGradeResponse.put("grade", gradeResponse.get("grade"));
-			conn.disconnect();
+			conn2.disconnect();
 
 			res.getWriter().println(new ObjectMapper().writeValueAsString(letterGradeResponse));
 
