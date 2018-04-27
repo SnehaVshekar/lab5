@@ -73,8 +73,26 @@ public class Lab5Servlet extends HttpServlet {
 
 			if (conn2.getResponseCode() != 200) {
 				res.sendError(conn2.getResponseCode(), conn2.getResponseMessage());
-				System.out.println(conn2.getErrorStream());
-				System.out.println(conn2.getResponseMessage());
+
+				br = new BufferedReader(new InputStreamReader((conn2.getInputStream())));
+				result = new StringJoiner("\n");
+				System.out.println("Error Output from second Server .... \n");
+
+				while ((output = br.readLine()) != null) {
+					System.out.println(output);
+
+				}
+
+				br = new BufferedReader(new InputStreamReader((conn2.getErrorStream())));
+				result = new StringJoiner("\n");
+				System.out.println("Error 2 Output from second Server .... \n");
+
+				while ((output = br.readLine()) != null) {
+					System.out.println(output);
+
+				}
+
+
 				return;
 			}
 
