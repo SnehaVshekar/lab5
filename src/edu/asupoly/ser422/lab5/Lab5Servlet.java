@@ -66,11 +66,11 @@ public class Lab5Servlet extends HttpServlet {
 
 			System.out.println("Received grade from first server : " + gradeResponse.get("grade"));
 
-			URL url2 = new URL("http://localhost:8080/lab5map/calculateLetterGrade");
+			URL url2 = new URL("http://localhost:8080/lab5map/calculateLetterGrade?grade=91.550003" );
 			HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
 			conn2.setRequestMethod("GET");
 			//conn2.addRequestProperty("grade", gradeResponse.get("grade"));
-			conn2.addRequestProperty("grade", "99.56");
+			//conn2.addRequestProperty("grade", "99.56");
 
 
 			if (conn2.getResponseCode() != 200) {
