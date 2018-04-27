@@ -72,8 +72,6 @@ public class Lab5Servlet extends HttpServlet {
 			conn2.addRequestProperty("grade", gradeResponse.get("grade"));
 
 			if (conn2.getResponseCode() != 200) {
-				res.sendError(conn2.getResponseCode(), conn2.getResponseMessage());
-
 				br = new BufferedReader(new InputStreamReader((conn2.getInputStream())));
 				result = new StringJoiner("\n");
 				System.out.println("Error Output from second Server .... \n");
@@ -91,8 +89,6 @@ public class Lab5Servlet extends HttpServlet {
 					System.out.println(output);
 
 				}
-
-
 				return;
 			}
 
