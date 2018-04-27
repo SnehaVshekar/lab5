@@ -64,15 +64,17 @@ public class Lab5Servlet extends HttpServlet {
 			Map<String, String> gradeResponse = new ObjectMapper().readValue(result.toString(), Map.class);
 			conn.disconnect();
 
+			System.out.println("Received grade from first server : " + gradeResponse.get("grade"));
+
 			url = new URL("http://localhost:8080/lab5map/calculateLetterGrade");
 			conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.addRequestProperty("grade", gradeResponse.get("grade"));
 
 			if (conn.getResponseCode() != 200) {
+				res.sendError(conn.getResponseCode(), conn.getResponseMessage());
+				System.out.println(conn.getErrorStream());
 				System.out.println(conn.getResponseMessage());
-				throw new RuntimeException("Failed : HTTP error code : "
-						+ conn.getResponseCode());
 			}
 
 			br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
