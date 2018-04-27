@@ -69,7 +69,9 @@ public class Lab5Servlet extends HttpServlet {
 			URL url2 = new URL("http://localhost:8080/lab5map/calculateLetterGrade");
 			HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
 			conn2.setRequestMethod("GET");
-			conn2.addRequestProperty("grade", gradeResponse.get("grade"));
+			//conn2.addRequestProperty("grade", gradeResponse.get("grade"));
+			conn2.addRequestProperty("grade", "99.56");
+
 
 			if (conn2.getResponseCode() != 200) {
 				br = new BufferedReader(new InputStreamReader((conn2.getInputStream())));
