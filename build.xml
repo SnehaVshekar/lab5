@@ -49,6 +49,9 @@
     <copy todir="${build.home}/WEB-INF">
       <fileset dir="." includes="${classes.dir}/**,${lib.dir}/**" excludes="${classes.dir}/driver/**"/>
     </copy>
+    <copy todir="${build.home}/WEB-INF/${classes.dir}">
+      <fileset dir="${properties.dir}"/>
+    </copy>
   	<copy file="WebContent/index.html" tofile="${build.home}/index.html"/>
     <copy file="web.xml" tofile="${build.home}/WEB-INF/web.xml"/>
   </target>
