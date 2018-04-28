@@ -53,7 +53,8 @@ public class Lab5Servlet extends HttpServlet {
 
 			String letterGrade = MapLetterGradeClient.process(grade);
 
-
+			pageBuf.append("\n\t<br/>Year: " + (year == null ? "" : year));
+			pageBuf.append("\n\t<br/>Subject: " + (subject == null ? "" : subject));
 			pageBuf.append("\n\t<br/>Grade: " + grade);
 			pageBuf.append("\n\t<br/>Letter: " + letterGrade);
 
